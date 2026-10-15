@@ -8,7 +8,7 @@ A full-stack developer portfolio built with Next.js 16, TypeScript, Tailwind CSS
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 4 + shadcn/ui
 - **Animation**: Framer Motion
-- **Database**: Supabase (PostgreSQL)
+- **Database**: Supabase (PostgreSQL) for production, SQLite (Prisma) for local development
 - **Auth**: Supabase Auth
 - **Validation**: Zod
 - **Forms**: React Hook Form
@@ -27,8 +27,8 @@ bun install
 ### 2. Set Up Supabase
 
 1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to the SQL Editor and run the schema from `supabase/schema.sql`
-3. Go to Project Settings > API to get your keys
+2. Go to Project Settings > API to get your keys
+3. For local development, the Prisma ORM uses SQLite (no additional setup needed)
 
 ### 3. Configure Environment Variables
 
@@ -55,6 +55,21 @@ bun run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000) to see the portfolio.
+
+## Development Commands
+
+- Install dependencies: `bun install`
+- Start development server: `bun run dev` (or `bun run dev:win` on Windows)
+- Build for production: `bun run build` (or `bun run build:win` on Windows)
+- Start production server: `bun run start` (or `bun run start:win` on Windows)
+- Lint code: `bun run lint`
+- Database (Prisma) commands:
+  * Push schema: `bun run db:push`
+  * Generate client: `bun run db:generate`
+  * Run migrations: `bun run db:migrate`
+  * Reset database: `bun run db:reset`
+
+Note: The primary database is Supabase. The Prisma commands are for local development with SQLite.
 
 ## Project Structure
 
