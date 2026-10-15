@@ -11,23 +11,16 @@ interface BlogSectionProps {
   showAll?: boolean
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5 } },
+}
+
 export function BlogSection({ posts, showAll = false }: BlogSectionProps) {
   const displayPosts = showAll ? posts : posts.slice(0, 3)
 
   return (
     <section id="blog" className="py-28 px-6 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/3 rounded-full blur-3xl" />
-        {/* Subtle dot grid */}
-        <div className="absolute inset-0 bg-muted/30 opacity-[0.02]"
-          style={{
-            backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-            backgroundSize: '40px 40px',
-          }}
-        />
-      </div>
-
       <div className="relative mx-auto max-w-5xl">
         <MotionWrapper>
           <SectionHeader
@@ -38,38 +31,26 @@ export function BlogSection({ posts, showAll = false }: BlogSectionProps) {
         </MotionWrapper>
 
         {posts.length === 0 ? (
-          <MotionWrapper>
-            <div className="text-center py-16">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/60 mb-4">
-                <span className="text-2xl">📝</span>
-              </div>
-              <p className="text-muted-foreground">
-                No blog posts published yet. Check back soon!
-              </p>
+          <div className="text-center py-16">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/60 mb-4">
+              <span className="text-2xl">📝</span>
             </div>
-          </MotionWrapper>
+            <p className="text-muted-foreground">
+              No blog posts published yet. Check back soon!
+            </p>
+          </div>
         ) : (
-          <>
-            {/* Featured post */}
-            {!showAll && posts[0] && (
-              <MotionWrapper delay={0.05} className="mb-8">
-                <BlogCard post={posts[0]} featured />
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {displayPosts.map((post, index) => (
+              <MotionWrapper key={post.id} variants={containerVariants} initial="hidden" animate="visible">
+                <BlogCard post={post} />
               </MotionWrapper>
-            )}
-
-            {/* Grid */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {(showAll ? displayPosts : displayPosts.slice(1)).map((post, index) => (
-                <MotionWrapper key={post.id} delay={(index + 1) * 0.06}>
-                  <BlogCard post={post} />
-                </MotionWrapper>
-              ))}
-            </div>
-          </>
+            ))}
+          </div>
         )}
 
         {!showAll && posts.length > 3 && (
-          <MotionWrapper className="mt-12 text-center">
+          <MotionWrapper className="mt-12 text-center" variants={containerVariants} initial="hidden" animate="visible">
             <Button asChild variant="outline" size="lg" className="border-primary/20 hover:border-primary/40 hover:bg-primary/5 group">
               <Link href="/blog">
                 View All Posts

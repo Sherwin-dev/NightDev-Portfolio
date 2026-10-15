@@ -7,18 +7,15 @@ import { SectionHeader } from '@/components/ui/SectionHeader'
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.6, staggerChildren: 0.1 },
-  },
+  visible: { opacity: 1, transition: { duration: 0.5 } },
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
 }
 
@@ -73,15 +70,14 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          animate="visible"
           className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
         >
           {display.map((testimonial) => (
             <motion.div
               key={testimonial.id}
               variants={itemVariants}
-              className="group relative rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5"
+              className="group relative rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/20 hover:-translate-y-0.2"
             >
               {/* Quote icon */}
               <Quote className="h-8 w-8 text-primary/10 mb-3" />

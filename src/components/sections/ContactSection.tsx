@@ -39,13 +39,13 @@ export function ContactSection() {
     }
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+  }
+
   return (
     <section id="contact" className="py-28 px-6 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative mx-auto max-w-4xl">
         <MotionWrapper>
           <SectionHeader
@@ -57,36 +57,31 @@ export function ContactSection() {
 
         <div className="mt-10 grid gap-8 md:grid-cols-5">
           {/* Info Card */}
-          <MotionWrapper className="md:col-span-2" delay={0.1}>
-            <div className="rounded-xl border bg-card/80 backdrop-blur-sm p-6 h-full overflow-hidden relative">
-              {/* Top gradient accent */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary/40 via-purple-500/40 to-primary/40" />
+          <div className="relative md:col-span-2 rounded-xl border bg-card/80 backdrop-blur-sm p-6 h-full overflow-hidden">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              I&apos;m always open to new opportunities, interesting projects, or just a friendly chat about tech.
+            </p>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                I&apos;m always open to new opportunities, interesting projects, or just a friendly chat about tech.
-              </p>
-
-              <div className="space-y-4">
-                <a
-                  href={SITE_CONFIG.links.email}
-                  className="group flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-                >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/10 group-hover:bg-primary/15 group-hover:border-primary/20 transition-all duration-200">
-                    <Mail className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Email</p>
-                    <p className="font-medium text-foreground/80 group-hover:text-foreground">contact@sherwintajan.dev</p>
-                  </div>
-                </a>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/10">
-                    <MapPin className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Location</p>
-                    <p className="font-medium text-foreground/80">Batangas, Philippines</p>
-                  </div>
+            <div className="space-y-4">
+              <a
+                href={SITE_CONFIG.links.email}
+                className="group flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/10 group-hover:bg-primary/15 group-hover:border-primary/20 transition-all duration-200">
+                  <Mail className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">Email</p>
+                  <p className="font-medium text-foreground/80 group-hover:text-foreground">contact@sherwintajan.dev</p>
+                </div>
+              </a>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/10">
+                  <MapPin className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-0.5">Location</p>
+                  <p className="font-medium text-foreground/80">Batangas, Philippines</p>
                 </div>
               </div>
 
@@ -111,109 +106,104 @@ export function ContactSection() {
                 </Link>
               </div>
             </div>
-          </MotionWrapper>
+          </div>
 
           {/* Form Card */}
-          <MotionWrapper className="md:col-span-3" delay={0.15}>
-            <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl border bg-card/80 backdrop-blur-sm p-6 overflow-hidden relative">
-              {/* Top gradient accent */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary/40 via-purple-500/40 to-primary/40" />
-
-              <div className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-medium mb-2 text-foreground/80">Name</label>
-                    <Input
-                      id="name"
-                      placeholder="Your name"
-                      className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transition-all"
-                      {...register('name')}
-                      aria-invalid={!!errors.name}
-                    />
-                    {errors.name && (
-                      <p className="mt-1.5 text-xs text-destructive">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-xs font-medium mb-2 text-foreground/80">Email</label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your@email.com"
-                      className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transition-all"
-                      {...register('email')}
-                      aria-invalid={!!errors.email}
-                    />
-                    {errors.email && (
-                      <p className="mt-1.5 text-xs text-destructive">{errors.email.message}</p>
-                    )}
-                  </div>
-                </div>
-
+          <form onSubmit={handleSubmit(onSubmit)} className="md:col-span-3 rounded-xl border bg-card/80 backdrop-blur-sm p-6 overflow-hidden relative">
+            <div className="space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="subject" className="block text-xs font-medium mb-2 text-foreground/80">
-                    Subject <span className="text-muted-foreground">(optional)</span>
-                  </label>
+                  <label htmlFor="name" className="block text-xs font-medium mb-2 text-foreground/80">Name</label>
                   <Input
-                    id="subject"
-                    placeholder="What is this about?"
+                    id="name"
+                    placeholder="Your name"
                     className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transition-all"
-                    {...register('subject')}
+                    {...register('name')}
+                    aria-invalid={!!errors.name}
                   />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-xs font-medium mb-2 text-foreground/80">Message</label>
-                  <Textarea
-                    id="message"
-                    placeholder="Your message..."
-                    rows={4}
-                    className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transition-all resize-none"
-                    {...register('message')}
-                    aria-invalid={!!errors.message}
-                  />
-                  {errors.message && (
-                    <p className="mt-1.5 text-xs text-destructive">{errors.message.message}</p>
+                  {errors.name && (
+                    <p className="mt-1.5 text-xs text-destructive">{errors.name.message}</p>
                   )}
                 </div>
+                <div>
+                  <label htmlFor="email" className="block text-xs font-medium mb-2 text-foreground/80">Email</label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transition-all"
+                    {...register('email')}
+                    aria-invalid={!!errors.email}
+                  />
+                  {errors.email && (
+                    <p className="mt-1.5 text-xs text-destructive">{errors.email.message}</p>
+                  )}
+                </div>
+              </div>
 
-                <motion.div whileTap={{ scale: 0.98 }}>
-                  <Button type="submit" size="lg" disabled={isSubmitting} className="w-full glow-primary-sm hover:glow-primary transition-shadow duration-300">
-                    {isSubmitting ? (
-                      'Sending...'
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </motion.div>
+              <div>
+                <label htmlFor="subject" className="block text-xs font-medium mb-2 text-foreground/80">
+                  Subject <span className="text-muted-foreground">(optional)</span>
+                </label>
+                <Input
+                  id="subject"
+                  placeholder="What is this about?"
+                  className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transitionall"
+                  {...register('subject')}
+                />
+              </div>
 
-                {status === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 text-green-600 dark:text-green-400"
-                  >
-                    <CheckCircle className="h-4 w-4" />
-                    <span className="text-sm">Message sent successfully!</span>
-                  </motion.div>
-                )}
-
-                {status === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 text-destructive"
-                  >
-                    <AlertCircle className="h-4 w-4" />
-                    <span className="text-sm">Failed to send message. Please try again.</span>
-                  </motion.div>
+              <div>
+                <label htmlFor="message" className="block text-xs font-medium mb-2 text-foreground/80">Message</label>
+                <Textarea
+                  id="message"
+                  placeholder="Your message..."
+                  rows={4}
+                  className="text-sm bg-secondary/40 border-border/50 focus:border-primary/40 focus:bg-secondary/60 transitionall resize-none"
+                  {...register('message')}
+                  aria-invalid={!!errors.message}
+                />
+                {errors.message && (
+                  <p className="mt-1.5 text-xs text-destructive">{errors.message.message}</p>
                 )}
               </div>
-            </form>
-          </MotionWrapper>
+
+              <motion.div whileTap={{ scale: 0.98 }}>
+                <Button type="submit" size="lg" disabled={isSubmitting} className="w-full glow-primary-sm hover:glow-primary transition-shadow duration-300">
+                  {isSubmitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Message
+                    </>
+                  )}
+                </Button>
+              </motion.div>
+
+              {status === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-green-600 dark:text-green-400"
+                >
+                  <CheckCircle className="h-4 w-4" />
+                  <span className="text-sm">Message sent successfully!</span>
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-destructive"
+                >
+                  <AlertCircle className="h-4 w-4" />
+                  <span className="text-sm">Failed to send message. Please try again.</span>
+                </motion.div>
+              )}
+            </div>
+          </form>
         </div>
       </div>
     </section>

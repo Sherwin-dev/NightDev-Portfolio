@@ -7,14 +7,14 @@ interface ExperienceSectionProps {
   experiences: Experience[]
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5 } },
+}
+
 export function ExperienceSection({ experiences }: ExperienceSectionProps) {
   return (
     <section id="experience" className="py-28 px-6 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/2 rounded-full blur-3xl" />
-      </div>
-
       <div className="relative mx-auto max-w-3xl">
         <MotionWrapper>
           <SectionHeader
