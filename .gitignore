@@ -65,3 +65,6 @@ prompt
 .zscript/
 .zscript
 *.zscript
+
+# Graphify output
+graphify-out/
