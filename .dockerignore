@@ -5,6 +5,8 @@ build
 
 .git
 .gitignore
+.obsidian
+.vscode
 
 .env
 .env.*
@@ -28,3 +30,5 @@ uploads
 *.sql
 README.md
 worklog.md
+
+report

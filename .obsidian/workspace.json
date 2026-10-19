@@ -11,10 +11,12 @@
             "id": "653c8096452e325f",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "pdf",
+              "state": {
+                "file": "file:C:/Users/sherw/OneDrive/Documents/System Design.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "System Design"
             }
           }
         ]
@@ -184,6 +186,7 @@
   },
   "active": "653c8096452e325f",
   "lastOpenFiles": [
+    "file:C:/Users/sherw/OneDrive/Documents/System Design.pdf",
     "graphify-out/GRAPH_REPORT.md",
     "node_modules/next/dist/docs/01-app/03-api-reference/08-turbopack.md",
     "node_modules/react-devtools-inline/README.md"

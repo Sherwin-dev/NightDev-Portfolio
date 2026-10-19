@@ -43,6 +43,8 @@ next-env.d.ts
 # local/generated files
 local-*
 .claude
+.obsidian
+.vscode
 .z-ai-config
 *.log
 dev.log
@@ -68,3 +70,5 @@ prompt
 
 # Graphify output
 graphify-out/
+
+report
