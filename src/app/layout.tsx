@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import './globals.css'
 import { Toaster } from '@/components/ui/sonner'
-import { SplashScreen } from '@/components/ui/loader'
+// import { SplashScreen } from '@/components/ui/loader'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -169,9 +169,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SplashScreen>
+          {/* <SplashScreen>
             {children}
-          </SplashScreen>
+          </SplashScreen> */}
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>
